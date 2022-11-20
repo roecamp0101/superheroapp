@@ -1,0 +1,64 @@
+<div class="container mt-4 min-height-76vh py-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="select-hero-text">
+        <h4 class="text-center fw-bolder">Select Your Hero</h4>
+      </div>
+    </div>
+
+  </div>
+  <div class="row justify-content-center">
+
+    <div class="spinner-border text-primary position-absolute top-50" role="status"
+      *ngIf="(herosData$ | async) === null || undefined" st>
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
+
+
+    <div class="card col-3 my-3 me-3 px-0" style="width: 22rem;"
+      *ngFor="let herodata of herosData$ | async | searchFilter: herosearchterm"
+      (click)="getheroId(herodata?.id, herodata?.name)" [ngClass]="{
+        'border-danger': herodata?.biography.alignment === 'bad',
+        'border-success': herodata?.biography.alignment === 'good',
+        'border-secondary': herodata?.biography.alignment === '-' ||
+         herodata?.biography.alignment === 'neutral'
+        }">
+
+      <img src="{{herodata?.images.lg}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title text-center">
+          <span class="fw-bolder fs-4">
+            Name: {{ herodata?.name }}</span>
+          <span class="ms-2 badge" [ngClass]="{
+                'text-bg-danger': herodata?.biography.alignment === 'bad',
+                'text-bg-success': herodata.biography.alignment === 'good',
+                'text-bg-secondary': herodata?.biography.alignment === '-'
+                || herodata?.biography.alignment === 'neutral'
+                }"> {{ herodata?.biography.alignment === 'bad' ? 'Villian' : (
+            herodata?.biography.alignment === 'good' ? 'Hero' : 'Neutral')}}
+
+          </span>
+        </h5>
+        <p class="card-text ms-3"><span class="fw-bolder text-decoration-underline">Bio:</span></p>
+        <p class="card-text ms-3"><span class="fw-bolder">Full Name:</span> {{herodata?.biography.fullName}}</p>
+        <p class="card-text ms-3"><span class="fw-bolder">Alter Egos:</span> {{herodata?.biography.alterEgos}}</p>
+        <p class="card-text ms-3"><span class="fw-bolder">Aliases:</span> {{ herodata?.biography.aliases}}</p>
+        <div class="card-footer bg-transparent"><a [routerLink]="['/herodetails', herodata.id, herodata.name]">More Info On
+            {{ herodata?.biography.alignment !== 'bad' ? 'Super Hero' : 'Super Villian'}} Here</a>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+
+<!-- <div class="div container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,216 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="back-button-container d-flex justify-content-end my-3"
+      *ngIf="(herodisplayInfo$ | async)">
+        <button type="button" class="btn text-white btn-lg"
+        [ngClass]="{
+          'btn-danger': (herodisplayInfo$ | async)?.biography.alignment === 'bad',
+          'btn-success': (herodisplayInfo$ | async)?.biography.alignment === 'good', 
+          'btn-secondary':   (herodisplayInfo$ | async)?.biography.alignment === '-'
+          || (herodisplayInfo$ | async)?.biography.alignment === 'neutral'
+          }"
+        (click)="returnhomeButton()"> <i class="bi bi-chevron-left"></i> Back</button>
+      </div> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-3"  
+      [ngClass]="{
+        'border-danger': (herodisplayInfo$ | async)?.biography.alignment === 'bad',
+        'border-success': (herodisplayInfo$ | async)?.biography.alignment === 'good',
+        'border-secondary': (herodisplayInfo$ | async)?.biography.alignment === '-'
+        || (herodisplayInfo$ | async)?.biography.alignment === 'neutral'
+        }"
+      >
+        <div class="row g-0">
+          <div class="col-md-6">
+            <img src="{{ (herodisplayInfo$ | async)?.images.lg }}" class="img-fluid rounded-start h-75" alt="...">
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <h1 class="card-title mb-3">
+                Name: {{ (herodisplayInfo$ | async)?.biography.fullName }}</h1>
+              <div class="card-text mb-3">
+                <h2 class="mb-3">Powerstats</h2>
+                <h6>Intelligence:</h6>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" 
+                  [ngClass]="{
+                    'bg-danger': (herodisplayInfo$ | async)?.biography.alignment === 'bad',
+                    'bg-success': (herodisplayInfo$ | async)?.biography.alignment === 'good',
+                    'bg-secondary': (herodisplayInfo$ | async)?.biography.alignment === '-'
+                    || (herodisplayInfo$ | async)?.biography.alignment === 'neutral'
+                    }"
+                  [style.width.%]="intelligence"
+                   valuenow="intelligence" aria-valuemin="0" aria-valuemax="intelligence">
+                    {{ (herodisplayInfo$ | async)?.powerstats.intelligence }}%</div>
+                </div>
+              </div>
+              <div class="card-text mb-3">
+               <h6>Strength: </h6> 
+                <div class="progress">
+                  <div 
+                  [ngClass]="{
+                    'bg-danger': (herodisplayInfo$ | async)?.biography.alignment === 'bad',
+                    'bg-success': (herodisplayInfo$ | async)?.biography.alignment === 'good',
+                    'bg-secondary': (herodisplayInfo$ | async)?.biography.alignment === '-'
+                    || (herodisplayInfo$ | async)?.biography.alignment === 'neutral'
+                    }"
+                  class="progress-bar" role="progressbar" 
+                  [style.width.%]="strength"
+                   valuenow="strength" aria-valuemin="0" aria-valuemax="strength">
+                    {{ (herodisplayInfo$ | async)?.powerstats.strength }}%</div>
+                </div>
+              </div>
+              <div class="card-text mb-3">
+                <h6>Speed: </h6> 
+                 <div class="progress">
+                   <div
+                   [ngClass]="{
+                    'bg-danger': (herodisplayInfo$ | async)?.biography.alignment === 'bad',
+                    'bg-success': (herodisplayInfo$ | async)?.biography.alignment === 'good',
+                    'bg-secondary': (herodisplayInfo$ | async)?.biography.alignment === '-'
+                    || (herodisplayInfo$ | async)?.biography.alignment === 'neutral'
+                    }"
+                   class="progress-bar" role="progressbar" 
+                   [style.width.%]="speed"
+                    valuenow="strength" aria-valuemin="0" aria-valuemax="speed">
+                     {{ (herodisplayInfo$ | async)?.powerstats.speed }}%</div>
+                 </div>
+               </div>
+
+               <div class="card-text mb-3">
+                <h6>Durability: </h6> 
+                 <div class="progress">
+                   <div 
+                   [ngClass]="{
+                    'bg-danger': (herodisplayInfo$ | async)?.biography.alignment === 'bad',
+                    'bg-success': (herodisplayInfo$ | async)?.biography.alignment === 'good',
+                    'bg-secondary': (herodisplayInfo$ | async)?.biography.alignment === '-'
+                    || (herodisplayInfo$ | async)?.biography.alignment === 'neutral'
+                    }"
+                   class="progress-bar" role="progressbar" 
+                   [style.width.%]="durability"
+                    valuenow="durability" aria-valuemin="0" aria-valuemax="durability">
+                     {{ (herodisplayInfo$ | async)?.powerstats.durability }}%</div>
+                 </div>
+               </div>
+
+               <div class="card-text mb-3">
+                <h6>Power: </h6> 
+                 <div class="progress">
+                   <div
+                   [ngClass]="{
+                    'bg-danger': (herodisplayInfo$ | async)?.biography.alignment === 'bad',
+                    'bg-success': (herodisplayInfo$ | async)?.biography.alignment === 'good',
+                    'bg-secondary': (herodisplayInfo$ | async)?.biography.alignment === '-'
+                    || (herodisplayInfo$ | async)?.biography.alignment === 'neutral'
+                    }"
+                   class="progress-bar" role="progressbar" 
+                   [style.width.%]="power"
+                    valuenow="power" aria-valuemin="0" aria-valuemax="power">
+                     {{ (herodisplayInfo$ | async)?.powerstats.power }}%</div>
+                 </div>
+               </div>
+
+               <div class="card-text mb-3">
+                <h5>Combat: </h5> 
+                 <div class="progress">
+                   <div
+                   [ngClass]="{
+                    'bg-danger': (herodisplayInfo$ | async)?.biography.alignment === 'bad',
+                    'bg-success': (herodisplayInfo$ | async)?.biography.alignment === 'good',
+                    'bg-secondary': (herodisplayInfo$ | async)?.biography.alignment === '-'
+                    || (herodisplayInfo$ | async)?.biography.alignment === 'neutral'
+                    }"
+                   class="progress-bar" role="progressbar" 
+                   [style.width.%]="combat"
+                    valuenow="combat" aria-valuemin="0" aria-valuemax="combat">
+                     {{ (herodisplayInfo$ | async)?.powerstats.combat }}%</div>
+                 </div>
+               </div>
+
+               <div class="card-text mt-3">
+                <h2 class="mb-3">Appearance</h2>
+                <h6>Gender:  {{ (herodisplayInfo$ | async)?.appearance.gender }} </h6> 
+                <h6>Species:  {{ (herodisplayInfo$ | async)?.appearance.race }} </h6> 
+                <h6>Place Of Birth:  {{ (herodisplayInfo$ | async)?.biography.placeOfBirth }} </h6>
+                <h6>Height:  {{ (herodisplayInfo$ | async)?.appearance.height }} </h6>
+                <h6>Weight:  {{ (herodisplayInfo$ | async)?.appearance.weight }} </h6>
+                <h6>Eye Color:  {{ (herodisplayInfo$ | async)?.appearance.eyeColor }} </h6>
+                <h6>Hair Color:  {{ (herodisplayInfo$ | async)?.appearance.hairColor }} </h6>
+               </div>
+
+               <div class="card-text mt-3">
+                <h2 class="mb-3">Occupation</h2>
+                <h6>{{ (herodisplayInfo$ | async)?.work.occupation }} </h6> 
+               </div>
+
+               <div class="card-text mt-3">
+                <h2 class="mb-3">Connections</h2>
+                <h6>Group Affiliations: {{ (herodisplayInfo$ | async)?.connections.groupAffiliation }} </h6> 
+                <h6>Relatives: {{ (herodisplayInfo$ | async)?.connections.relatives }} </h6> 
+               </div>
+
+               <div class="card-text mt-3">
+                <h2 class="mb-3">Comic Book Apperance</h2>
+                <h6>First Appearance: {{ (herodisplayInfo$ | async)?.biography.firstAppearance }} </h6> 
+                <h6>Publisher: {{ (herodisplayInfo$ | async)?.biography.publisher }} </h6> 
+               </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <span>{{herodisplayInfo$ | async | json}}
+  
+</span> -->
+
+<!-- <div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <div class="card mb-3" *ngIf="herodisplayInfo$">
+                <img src="{{ (herodisplayInfo$ | async)?.images.lg }}" class="card-img-top img-fluid" alt="...">
+                <div class="card-body px-0" *ngIf="herodisplayInfo$">
+                  <h5 class="card-title text-center">
+                     <span class="fw-bolder fs-4">
+                      Name:
+                      {{ (herodisplayInfo$ | async)?.name }}</span>
+                  <span class="ms-2 badge"
+                  [ngClass]="{
+                    'text-bg-danger': (herodisplayInfo$ | async)?.biography.alignment === 'bad',
+                    'text-bg-primary': (herodisplayInfo$ | async)?.biography.alignment === 'good' || 
+                    (herodisplayInfo$ | async)?.biography.alignment === '-'
+                    }"
+                  
+                  >{{ (herodisplayInfo$ | async)?.biography.alignment !== 'bad' ? 'Hero' : 'Villian'}}</span>
+                </h5>
+                  <p class="card-text ms-3"><span class="fw-bolder text-decoration-underline">Bio:</span></p>
+                  <p class="card-text ms-3"><span class="fw-bolder">
+                    Full Name:</span> {{(herodisplayInfo$ | async)?.biography.fullName}}</p>
+                  <p class="card-text ms-3"><span class="fw-bolder">Alter Egos:</span> {{(herodisplayInfo$ | async)?.biography.alterEgos}}</p>
+                  <p class="card-text ms-3"><span class="fw-bolder">Aliases:</span> {{(herodisplayInfo$ | async)?.biography.aliases}}</p>
+                  <div class="card-footer bg-transparent"><a href="">More Info On
+                    {{ (herodisplayInfo$ | async)?.biography.alignment !== 'bad' ? 'Super Hero' : 'Super Villian'}} Here</a>
+                  </div>
+                </div>
+              </div>
+
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+<!-- {{herodisplayInfo$?.name}} -->
+<!-- {{herodisplayInfo$.name | async}} -->
+<!-- {{ (herodisplayInfo$) | async}} -->
+<!-- <pre  *ngIf="herodisplayInfo$">{{(herodisplayInfo$)  | async |json}}</pre> -->
